@@ -1,0 +1,35 @@
+{
+	"name": "ETL call",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "names",
+						"type": "DatasetReference"
+					},
+					"name": "Readnames"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "outputnames",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DistinctRows"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"script": "source(output(\n\t\tName as string,\n\t\tAge as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> Readnames\naggregate1 aggregate(groupBy(mycols = sha2(256,columns())),\n\teach(match(true()), $$ = first($$))) ~> DistinctRows\nReadnames aggregate(groupBy(mycol = sha2(256,columns())),\n\teach(match(true()), $$ = first($$))) ~> aggregate1\nDistinctRows sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tpartitionBy('hash', 1)) ~> sink1"
+		}
+	}
+}

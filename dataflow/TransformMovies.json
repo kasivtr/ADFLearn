@@ -1,0 +1,54 @@
+{
+	"name": "TransformMovies",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Moviescsv",
+						"type": "DatasetReference"
+					},
+					"name": "MoviesDB"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "outputnames",
+						"type": "DatasetReference"
+					},
+					"name": "StoretoBlobStorage"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter"
+				},
+				{
+					"name": "AggregateComedyRatings"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movies as string,",
+				"          Title as string,",
+				"          genresgenregenre as string,",
+				"          YEAR as string,",
+				"          Rating as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> MoviesDB",
+				"MoviesDB filter(toInteger(YEAR) >= 1910 && toInteger(YEAR) < 2000 && rlike(genresgenregenre, 'Comedy')) ~> filter",
+				"filter aggregate(groupBy(YEAR),",
+				"     AverageComedyRating = avg(toInteger(Rating))) ~> AggregateComedyRatings",
+				"AggregateComedyRatings sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> StoretoBlobStorage"
+			]
+		}
+	}
+}

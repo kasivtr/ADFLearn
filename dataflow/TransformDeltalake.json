@@ -1,0 +1,74 @@
+{
+	"name": "TransformDeltalake",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MoviesCsvDelta",
+						"type": "DatasetReference"
+					},
+					"name": "DeltaMoviesCsv"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureDataLakeStorage1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "alterRow1"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movies as integer,",
+				"          Title as string,",
+				"          genresgenregenre as string,",
+				"          YEAR as short,",
+				"          Rating as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DeltaMoviesCsv",
+				"filter1 derive(Rating = iif(YEAR==1988,1,toInteger(Rating)),",
+				"          YEAR = iif(YEAR==1960, 2021, toInteger(YEAR)),",
+				"          movies = iif(YEAR==1960, movies+1000, movies)) ~> derivedColumn1",
+				"derivedColumn1 alterRow(updateIf(YEAR==1988),",
+				"     insertIf(YEAR==2021),",
+				"     deleteIf(YEAR==1950)) ~> alterRow1",
+				"DeltaMoviesCsv filter(YEAR==1950 || YEAR==1988 || YEAR==1960) ~> filter1",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'exportcsv',",
+				"     folderPath: 'adfdeltalake',",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

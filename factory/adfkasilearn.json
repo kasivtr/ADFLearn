@@ -1,0 +1,9 @@
+{
+	"name": "adfkasilearn",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c9459a7c-85ff-4c60-8814-4abab4890440",
+		"tenantId": "93f33571-550f-43cf-b09f-cd331338d086"
+	}
+}
