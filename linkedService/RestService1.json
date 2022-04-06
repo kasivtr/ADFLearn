@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://jsonplaceholder.typicode.com/users",
+			"url": "https://developers.facebook.com/tools/explorer/743460370354160/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
