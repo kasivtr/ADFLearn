@@ -47,7 +47,10 @@
 				"outputs": [
 					{
 						"referenceName": "RestJson",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "userswafa.json"
+						}
 					}
 				]
 			},
@@ -126,7 +129,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"query": {
-											"value": "@?page=[item()]",
+											"value": "@?page={item()}",
 											"type": "Expression"
 										}
 									}
