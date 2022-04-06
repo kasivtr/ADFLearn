@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://developers.facebook.com/tools/explorer/743460370354160/",
+			"url": "https://developers.facebook.com/tools/explorer/743460370354160/?method=GET&path=me%3Ffields%3Did%2Cname%2Clikes.limit(10)%2Cemail%2Cbirthday&version=v13.0",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
