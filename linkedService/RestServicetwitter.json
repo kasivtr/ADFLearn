@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://api.twitter.com/1.1/statuses/user_timeline.json",
+			"url": "https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
