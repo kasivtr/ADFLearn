@@ -2,6 +2,12 @@
 	"name": "RestServicetwitter",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"parameters": {
+			"screen_name": {
+				"type": "string",
+				"defaultValue": "@kasivtr"
+			}
+		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
