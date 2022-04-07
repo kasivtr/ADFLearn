@@ -67,7 +67,7 @@
 					"url": "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@kasivtr",
 					"method": "GET",
 					"headers": {
-						"Authorization": "OAuth oauth_consumer_key=\"TMtFmvqZumeRYfheKzjkDR6cv\",oauth_token=\"123855008-kFugFninJYhb37WGArTTjqK7xA3ZARp6YTkDlpMV\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1649364510\",oauth_nonce=\"uA1FUOLTudm\",oauth_version=\"1.0\",oauth_signature=\"psi3HHz%2FhAylIhtJHnEpGf%2F2eW0%3D\""
+						"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAKisbAEAAAAASFCfq%2Fq5aisvhfiozs5k7mob6WE%3Dds4PlFkkulYMPfAvkyt4AExIJc0CCfoHChcSmsTfAzVgVWt1tq"
 					}
 				}
 			}
