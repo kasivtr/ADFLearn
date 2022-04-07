@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@kasivtr&access_token=123855008-U4Bv3QTlUa3sU9QveflqFDuf7Je42F0BVETvGAhQ",
+			"url": "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@kasivtr",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
