@@ -1,13 +1,23 @@
 {
 	"name": "RestServicetwitter",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
 			"url": "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@kasivtr",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "Anonymous"
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"Authorization": {
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"APIKey": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
