@@ -36,7 +36,1052 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['statuses'][0]['created_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['truncated']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['hashtags'][0]['text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['hashtags'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['symbols'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['user_mentions'][0]['screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['user_mentions'][0]['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['user_mentions'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['user_mentions'][0]['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['user_mentions'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['entities']['urls'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['metadata']['iso_language_code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['metadata']['result_type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['source']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['in_reply_to_status_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['in_reply_to_status_id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['in_reply_to_user_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['in_reply_to_user_id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['in_reply_to_screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['location']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['entities']['description']['urls'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['protected']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['followers_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['friends_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['listed_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['created_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['favourites_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['utc_offset']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['time_zone']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['geo_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['verified']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['statuses_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['lang']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['contributors_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['is_translator']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['is_translation_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_background_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_background_image_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_background_image_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_background_tile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_image_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_image_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_link_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_sidebar_border_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_sidebar_fill_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_text_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['profile_use_background_image']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['has_extended_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['default_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['default_profile_image']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['following']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['follow_request_sent']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['notifications']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['translator_type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['user']['withheld_in_countries'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['geo']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['coordinates']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['place']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['contributors']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['created_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['truncated']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['hashtags'][0]['text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['hashtags'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['symbols'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['user_mentions'][0]['screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['user_mentions'][0]['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['user_mentions'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['user_mentions'][0]['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['user_mentions'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['urls'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['media_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['media_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['display_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['expanded_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['small']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['small']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['small']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['thumb']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['thumb']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['thumb']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['large']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['large']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['large']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['medium']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['medium']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['entities']['media'][0]['sizes']['medium']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['media_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['media_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['display_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['expanded_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['small']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['small']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['small']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['thumb']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['thumb']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['thumb']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['large']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['large']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['large']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['medium']['w']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['medium']['h']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['extended_entities']['media'][0]['sizes']['medium']['resize']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['metadata']['iso_language_code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['metadata']['result_type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['source']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['in_reply_to_status_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['in_reply_to_status_id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['in_reply_to_user_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['in_reply_to_user_id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['in_reply_to_screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['screen_name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['location']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['url']['urls'][0]['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['url']['urls'][0]['expanded_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['url']['urls'][0]['display_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['url']['urls'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['description']['urls'][0]['url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['description']['urls'][0]['expanded_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['description']['urls'][0]['display_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['entities']['description']['urls'][0]['indices'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['protected']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['followers_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['friends_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['listed_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['created_at']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['favourites_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['utc_offset']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['time_zone']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['geo_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['verified']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['statuses_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['lang']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['contributors_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['is_translator']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['is_translation_enabled']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_background_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_background_image_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_background_image_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_background_tile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_image_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_image_url_https']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_banner_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_link_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_sidebar_border_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_sidebar_fill_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_text_color']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['profile_use_background_image']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['has_extended_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['default_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['default_profile_image']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['following']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['follow_request_sent']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['notifications']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['translator_type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['user']['withheld_in_countries'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['geo']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['coordinates']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['place']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['contributors']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['is_quote_status']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['retweet_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['favorite_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['favorited']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['retweeted']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['possibly_sensitive']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted_status']['lang']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['is_quote_status']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweet_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['favorite_count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['favorited']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['retweeted']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statuses'][0]['lang']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['completed_in']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['max_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['max_id_str']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['next_results']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['query']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['refresh_url']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['since_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['search_metadata']['since_id_str']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
@@ -53,26 +1098,6 @@
 						}
 					}
 				]
-			},
-			{
-				"name": "Web1",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"url": "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@kasivtr",
-					"method": "GET",
-					"headers": {
-						"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAKisbAEAAAAASFCfq%2Fq5aisvhfiozs5k7mob6WE%3Dds4PlFkkulYMPfAvkyt4AExIJc0CCfoHChcSmsTfAzVgVWt1tq"
-					}
-				}
 			}
 		],
 		"annotations": []
