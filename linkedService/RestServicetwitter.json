@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://api.twitter.com/1.1/search/tweets.json",
+			"url": "https://api.twitter.com/1.1/search",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
