@@ -3,7 +3,10 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "RestServicetwitter",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"screen_name": "'@kasivtr'"
+			}
 		},
 		"annotations": [],
 		"type": "RestResource",
