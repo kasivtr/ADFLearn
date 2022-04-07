@@ -8,10 +8,18 @@
 				"screen_name": "'@kasivtr'"
 			}
 		},
+		"parameters": {
+			"query": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": ""
+			"relativeUrl": {
+				"value": "@dataset().query",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
