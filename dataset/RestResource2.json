@@ -8,12 +8,6 @@
 				"screen_name": "'@kasivtr'"
 			}
 		},
-		"parameters": {
-			"Authorization": {
-				"type": "string",
-				"defaultValue": "OAuth oauth_consumer_key=\"86TottHJMW4i26reSbVKkY2KZ\",oauth_token=\"123855008-U4Bv3QTlUa3sU9QveflqFDuf7Je42F0BVETvGAhQ\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1649349317\",oauth_nonce=\"WssWXTGaiai\",oauth_version=\"1.0\",oauth_signature=\"4LactDH2ruJvcL3TZEeioGLRbuE%3D\""
-			}
-		},
 		"annotations": [],
 		"type": "RestResource",
 		"schema": []
