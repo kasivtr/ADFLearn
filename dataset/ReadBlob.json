@@ -5,12 +5,20 @@
 			"referenceName": "inputblob",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"inputstoragefilename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "FileList_2022-04-09T12:37:30.0941257Z",
+				"fileName": {
+					"value": "@dataset().inputstoragefilename",
+					"type": "Expression"
+				},
 				"container": "root"
 			},
 			"columnDelimiter": ",",
