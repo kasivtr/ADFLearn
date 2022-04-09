@@ -36,7 +36,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@range(1,10)",
+						"value": "@range(1,3)",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -64,7 +64,7 @@
 									},
 									"paginationRules": {
 										"supportRFC5988": "true",
-										"AbsoluteUrl": "Headers.$.search_metadata.next_results"
+										"AbsoluteUrl": "$.{@search_metadata.next_results}"
 									}
 								},
 								"sink": {
