@@ -20,87 +20,115 @@
 		},
 		"schema": [
 			{
+				"name": "RepoID",
 				"type": "String"
 			},
 			{
+				"name": "FileListUUID",
 				"type": "String"
 			},
 			{
+				"name": "SubFilePath",
 				"type": "String"
 			},
 			{
+				"name": "FileName",
 				"type": "String"
 			},
 			{
+				"name": "FileSize",
 				"type": "String"
 			},
 			{
+				"name": "FileLastModifiedDT",
 				"type": "String"
 			},
 			{
+				"name": "FileCreatedDT",
 				"type": "String"
 			},
 			{
+				"name": "TAG_PROTECT",
 				"type": "String"
 			},
 			{
+				"name": "Path_lvl1",
 				"type": "String"
 			},
 			{
+				"name": "Path_lvl2",
 				"type": "String"
 			},
 			{
+				"name": "Path_lvl3",
 				"type": "String"
 			},
 			{
+				"name": "Path_lvl4",
 				"type": "String"
 			},
 			{
+				"name": "ProcessState",
 				"type": "String"
 			},
 			{
+				"name": "ErrorCode",
 				"type": "String"
 			},
 			{
+				"name": "ErrorCode2",
 				"type": "String"
 			},
 			{
+				"name": "AnnexationStartDate",
 				"type": "String"
 			},
 			{
+				"name": "AnnexationEndDate",
 				"type": "String"
 			},
 			{
+				"name": "AnnexLocation",
 				"type": "String"
 			},
 			{
+				"name": "AnnexMD5Source",
 				"type": "String"
 			},
 			{
+				"name": "AnnexMD5SDestination",
 				"type": "String"
 			},
 			{
+				"name": "RestoreMD5",
 				"type": "String"
 			},
 			{
+				"name": "RestoreReason",
 				"type": "String"
 			},
 			{
+				"name": "RestoreReasonFreeText",
 				"type": "String"
 			},
 			{
+				"name": "UserName",
 				"type": "String"
 			},
 			{
+				"name": "RestoreStartDate",
 				"type": "String"
 			},
 			{
+				"name": "RestoreEndDate",
 				"type": "String"
 			},
 			{
+				"name": "CleardownDate",
 				"type": "String"
 			},
 			{
+				"name": "CleardownActionID",
 				"type": "String"
 			}
 		]
