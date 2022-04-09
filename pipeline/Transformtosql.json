@@ -37,16 +37,6 @@
 									"type": "Expression"
 								}
 							}
-						},
-						"linkedServiceParameters": {
-							"source1": {
-								"schemaLinkedService": {
-									"inputstoragefilename": {
-										"value": "@pipeline().parameters.inputstorefilename",
-										"type": "Expression"
-									}
-								}
-							}
 						}
 					},
 					"compute": {
