@@ -19,10 +19,26 @@
 						"referenceName": "dataflow1",
 						"type": "DataFlowReference",
 						"datasetParameters": {
+							"source1": {
+								"inputstoragefilename": {
+									"value": "@pipeline().parameters.inputstorefilename",
+									"type": "Expression"
+								}
+							},
 							"sink1": {
 								"outputfilename": {
 									"value": "@pipeline().parameters.outputfilename",
 									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceParameters": {
+							"source1": {
+								"schemaLinkedService": {
+									"inputstoragefilename": {
+										"value": "@pipeline().parameters.inputstorefilename",
+										"type": "Expression"
+									}
 								}
 							}
 						}
@@ -37,6 +53,9 @@
 		],
 		"parameters": {
 			"outputfilename": {
+				"type": "string"
+			},
+			"inputstorefilename": {
 				"type": "string"
 			}
 		},
