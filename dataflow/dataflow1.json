@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "onpermtoblob",
+						"referenceName": "commonDataLakestorage2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -27,6 +27,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     outfile as string ('outfilename')",
+				"}",
 				"source(output(",
 				"          RepoID as string,",
 				"          FileListUUID as string,",
@@ -64,23 +67,9 @@
 				"source1 filter(ProcessState=='AP') ~> filter1",
 				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {{\"id\":1} as string,",
-				"          {\"name\":\"Leanne Graham\"} as string,",
-				"          {\"username\":\"Bret\"} as string,",
-				"          {\"email\":\"Sincere@april.biz\"} as string,",
-				"          {\"address\":{\"street\":\"Kulas Light\"} as string,",
-				"          {\"suite\":\"Apt. 556\"} as string,",
-				"          {\"city\":\"Gwenborough\"} as string,",
-				"          {\"zipcode\":\"92998-3874\"} as string,",
-				"          {\"geo\":{\"lat\":\"-37.3159\"} as string,",
-				"          {\"lng\":\"81.1496\"}}} as string,",
-				"          {\"phone\":\"1-770-736-8031 x56442\"} as string,",
-				"          {\"website\":\"hildegard.org\"} as string,",
-				"          {\"company\":{\"name\":\"Romaguera-Crona\"} as string,",
-				"          {\"catchPhrase\":\"Multi-layered client-server neural-net\"} as string,",
-				"          {\"bs\":\"harness real-time e-markets\"}}} as string",
-				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
