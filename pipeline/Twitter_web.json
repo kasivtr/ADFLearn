@@ -63,7 +63,8 @@
 										"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAKisbAEAAAAASFCfq%2Fq5aisvhfiozs5k7mob6WE%3Dds4PlFkkulYMPfAvkyt4AExIJc0CCfoHChcSmsTfAzVgVWt1tq"
 									},
 									"paginationRules": {
-										"supportRFC5988": "true"
+										"supportRFC5988": "true",
+										"AbsoluteUrl": "Headers.$.search_metadata.next_results"
 									}
 								},
 								"sink": {
@@ -83,7 +84,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"query": {
-											"value": "@concat('tweets.json',activity('GetTwitterdata').output.search_metadata.next_results)\r\n",
+											"value": "@concat('tweets.json',activity('GetTwitterdata').output.search_metadata.next_results)\n",
 											"type": "Expression"
 										}
 									}
