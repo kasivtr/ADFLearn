@@ -19,7 +19,7 @@
 					"value": "@dataset().outputfilename",
 					"type": "Expression"
 				},
-				"folderPath": "Archive",
+				"folderPath": "output",
 				"fileSystem": "root"
 			},
 			"columnDelimiter": ",",
