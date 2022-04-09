@@ -27,9 +27,6 @@
 				}
 			],
 			"scriptLines": [
-				"parameters{",
-				"     outfile as string ('outfilename')",
-				"}",
 				"source(output(",
 				"          RepoID as string,",
 				"          FileListUUID as string,",
