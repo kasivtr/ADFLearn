@@ -1,0 +1,16 @@
+{
+	"name": "onpremsql",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=GB-5CG0353WQY;initial catalog=KASITEST;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzYTI2M2Q0OS1jNjBiLTRmYzYtYWY2OC1kMTE5YzQ4OWMwZjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SelfhostedIntergrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
