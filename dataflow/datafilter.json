@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "datafilter",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -27,6 +27,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     outputfilenamepatter as string",
+				"}",
 				"source(output(",
 				"          RepoID as string,",
 				"          FileListUUID as string,",
@@ -63,7 +66,7 @@
 				"source1 filter(ProcessState=='AP') ~> filter1",
 				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     filePattern:'outputafterfilter[n].csv',",
+				"     filePattern:($outputfilenamepatter),",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
