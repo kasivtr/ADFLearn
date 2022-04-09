@@ -1,0 +1,35 @@
+{
+	"name": "readtwitterjson",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InputDataLakeStorage2",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          page as integer,",
+				"          per_page as integer,",
+				"          total as integer,",
+				"          total_pages as integer,",
+				"          data as (id as integer, email as string, first_name as string, last_name as string, avatar as string)[],",
+				"          support as (url as string, text as string),",
+				"          statuses as (created_at as string, id as integer, id_str as string, text as string, truncated as boolean, entities as (hashtags as string[], symbols as string[], user_mentions as (screen_name as string, name as string, id as integer, id_str as string, indices as integer[])[], urls as string[]), metadata as (iso_language_code as string, result_type as string), source as string, in_reply_to_status_id as string, in_reply_to_status_id_str as string, in_reply_to_user_id as string, in_reply_to_user_id_str as string, in_reply_to_screen_name as string, user as (id as integer, id_str as string, name as string, screen_name as string, location as string, description as string, url as string, entities as (description as (urls as string[])), protected as boolean, followers_count as integer, friends_count as integer, listed_count as integer, created_at as string, favourites_count as integer, utc_offset as string, time_zone as string, geo_enabled as boolean, verified as boolean, statuses_count as integer, lang as string, contributors_enabled as boolean, is_translator as boolean, is_translation_enabled as boolean, profile_background_color as string, profile_background_image_url as string, profile_background_image_url_https as string, profile_background_tile as boolean, profile_image_url as string, profile_image_url_https as string, profile_banner_url as string, profile_link_color as string, profile_sidebar_border_color as string, profile_sidebar_fill_color as string, profile_text_color as string, profile_use_background_image as boolean, has_extended_profile as boolean, default_profile as boolean, default_profile_image as boolean, following as string, follow_request_sent as string, notifications as string, translator_type as string, withheld_in_countries as string[]), geo as string, coordinates as string, place as string, contributors as string, retweeted_status as (created_at as string, id as integer, id_str as string, text as string, truncated as boolean, entities as (hashtags as string[], symbols as string[], user_mentions as string[], urls as string[]), metadata as (iso_language_code as string, result_type as string), source as string, in_reply_to_status_id as integer, in_reply_to_status_id_str as string, in_reply_to_user_id as integer, in_reply_to_user_id_str as string, in_reply_to_screen_name as string, user as (id as integer, id_str as string, name as string, screen_name as string, location as string, description as string, url as string, entities as (description as (urls as string[])), protected as boolean, followers_count as integer, friends_count as integer, listed_count as integer, created_at as string, favourites_count as integer, utc_offset as string, time_zone as string, geo_enabled as boolean, verified as boolean, statuses_count as integer, lang as string, contributors_enabled as boolean, is_translator as boolean, is_translation_enabled as boolean, profile_background_color as string, profile_background_image_url as string, profile_background_image_url_https as string, profile_background_tile as boolean, profile_image_url as string, profile_image_url_https as string, profile_banner_url as string, profile_link_color as string, profile_sidebar_border_color as string, profile_sidebar_fill_color as string, profile_text_color as string, profile_use_background_image as boolean, has_extended_profile as boolean, default_profile as boolean, default_profile_image as boolean, following as string, follow_request_sent as string, notifications as string, translator_type as string, withheld_in_countries as string[]), geo as string, coordinates as string, place as string, contributors as string, is_quote_status as boolean, retweet_count as integer, favorite_count as integer, favorited as boolean, retweeted as boolean, lang as string), is_quote_status as boolean, retweet_count as integer, favorite_count as integer, favorited as boolean, retweeted as boolean, lang as string)[],",
+				"          search_metadata as (completed_in as double, max_id as integer, max_id_str as string, next_results as string, query as string, refresh_url as string, count as integer, since_id as integer, since_id_str as string)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1"
+			]
+		}
+	}
+}
