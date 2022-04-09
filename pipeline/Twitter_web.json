@@ -114,7 +114,7 @@
 							"typeProperties": {
 								"variableName": "pagingvar",
 								"value": {
-									"value": "activity('GetTwitterdata_copy1').output.search_metadata.next_results",
+									"value": "activity('GetTwitterdata_copy1').output.search_metadata.next_results.value",
 									"type": "Expression"
 								}
 							}
