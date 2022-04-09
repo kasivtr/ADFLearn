@@ -13,9 +13,9 @@
 					}
 				],
 				"typeProperties": {
-					"variableName": "Timestamp",
+					"variableName": "FilePattern",
 					"value": {
-						"value": "@utcnow()",
+						"value": "FileList",
 						"type": "Expression"
 					}
 				}
@@ -55,7 +55,7 @@
 				"typeProperties": {
 					"variableName": "FileName",
 					"value": {
-						"value": "@concat('Test_', pipeline().TriggerTime)",
+						"value": "@concat(variables('FilePattern'),'_', pipeline().TriggerTime)",
 						"type": "Expression"
 					}
 				}
@@ -63,7 +63,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -73,12 +80,47 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT * FROM dbo.FileList",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "onpermtoblob",
+						"type": "DatasetReference",
+						"parameters": {
+							"Tablename": {
+								"value": "@variables('FileName')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"variables": {
-			"Timestamp": {
+			"FilePattern": {
 				"type": "String",
 				"defaultValue": "1"
 			},

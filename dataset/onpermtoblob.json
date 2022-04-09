@@ -1,0 +1,92 @@
+{
+	"name": "onpermtoblob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "inputblob",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Tablename",
+					"type": "Expression"
+				},
+				"container": "root"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "{\"id\":1",
+				"type": "String"
+			},
+			{
+				"name": "\"name\":\"Leanne Graham\"",
+				"type": "String"
+			},
+			{
+				"name": "\"username\":\"Bret\"",
+				"type": "String"
+			},
+			{
+				"name": "\"email\":\"Sincere@april.biz\"",
+				"type": "String"
+			},
+			{
+				"name": "\"address\":{\"street\":\"Kulas Light\"",
+				"type": "String"
+			},
+			{
+				"name": "\"suite\":\"Apt. 556\"",
+				"type": "String"
+			},
+			{
+				"name": "\"city\":\"Gwenborough\"",
+				"type": "String"
+			},
+			{
+				"name": "\"zipcode\":\"92998-3874\"",
+				"type": "String"
+			},
+			{
+				"name": "\"geo\":{\"lat\":\"-37.3159\"",
+				"type": "String"
+			},
+			{
+				"name": "\"lng\":\"81.1496\"}}",
+				"type": "String"
+			},
+			{
+				"name": "\"phone\":\"1-770-736-8031 x56442\"",
+				"type": "String"
+			},
+			{
+				"name": "\"website\":\"hildegard.org\"",
+				"type": "String"
+			},
+			{
+				"name": "\"company\":{\"name\":\"Romaguera-Crona\"",
+				"type": "String"
+			},
+			{
+				"name": "\"catchPhrase\":\"Multi-layered client-server neural-net\"",
+				"type": "String"
+			},
+			{
+				"name": "\"bs\":\"harness real-time e-markets\"}}",
+				"type": "String"
+			}
+		]
+	}
+}
