@@ -137,7 +137,11 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"outputfilename": "outputfilterdata.csv"
+						"outputfilename": "outputfilterdata.csv",
+						"inputstorefilename": {
+							"value": "@variables('FileName')",
+							"type": "Expression"
+						}
 					}
 				}
 			}
