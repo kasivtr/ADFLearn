@@ -18,6 +18,12 @@
 					"dataflow": {
 						"referenceName": "datafilter",
 						"type": "DataFlowReference",
+						"parameters": {
+							"outputfilenamepatter": {
+								"value": "'@{pipeline().parameters.outputfilename}'",
+								"type": "Expression"
+							}
+						},
 						"datasetParameters": {
 							"source1": {
 								"inputstoragefilename": {
