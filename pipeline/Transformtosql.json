@@ -22,13 +22,6 @@
 							"sink1": {
 								"outputfilename": "filteredoutput.csv"
 							}
-						},
-						"linkedServiceParameters": {
-							"sink1": {
-								"schemaLinkedService": {
-									"outputfilename": "filteredoutput.csv"
-								}
-							}
 						}
 					},
 					"compute": {
