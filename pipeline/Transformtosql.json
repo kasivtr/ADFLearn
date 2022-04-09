@@ -20,7 +20,10 @@
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"sink1": {
-								"outputfilename": "filteredoutput.csv"
+								"outputfilename": {
+									"value": "@pipeline().parameters.outputfilename",
+									"type": "Expression"
+								}
 							}
 						}
 					},
@@ -32,6 +35,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"outputfilename": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
