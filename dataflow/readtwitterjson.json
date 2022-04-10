@@ -59,7 +59,6 @@
 				"     skipDuplicateMapOutputs: false) ~> flatten1",
 				"flatten1 foldDown(unroll(user_mentions),",
 				"     mapColumn(",
-				"          search_metadata,",
 				"          created_at,",
 				"          id,",
 				"          id_str,",
