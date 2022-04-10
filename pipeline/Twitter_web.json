@@ -219,7 +219,7 @@
 		"variables": {
 			"pagingvar": {
 				"type": "String",
-				"defaultValue": "q=superbowl&include_entities=1&result_type=recent"
+				"defaultValue": "?q=superbowl&result_type=recent"
 			}
 		},
 		"annotations": []
