@@ -25,14 +25,7 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Set variable2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
@@ -150,23 +143,6 @@
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "Set variable2",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "GetTwitterdata",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "pagingvar",
-					"value": "?q=superbowl&result_type=recent"
 				}
 			},
 			{
