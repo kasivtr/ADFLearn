@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          page as integer,",
@@ -28,7 +32,19 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> source1"
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 select(mapColumn(",
+				"          page,",
+				"          per_page,",
+				"          total,",
+				"          total_pages,",
+				"          data,",
+				"          support,",
+				"          statuses,",
+				"          search_metadata",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
