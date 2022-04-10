@@ -168,6 +168,52 @@
 					"variableName": "pagingvar",
 					"value": "?q=superbowl&result_type=recent"
 				}
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "readtwitterjson",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"filename": "twitterres1.json"
+							},
+							"sink1": {
+								"flattenoutput": "twitterflatten"
+							}
+						},
+						"linkedServiceParameters": {
+							"sink1": {
+								"schemaLinkedService": {
+									"flattenoutput": "twitterflatten"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"variables": {
