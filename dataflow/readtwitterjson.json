@@ -12,10 +12,21 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DataLakeflattenoutput",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
-					"name": "select1"
+					"name": "flatten1"
+				},
+				{
+					"name": "flatten2"
 				}
 			],
 			"scriptLines": [
@@ -33,18 +44,41 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> source1",
-				"source1 select(mapColumn(",
-				"          page,",
-				"          per_page,",
-				"          total,",
-				"          total_pages,",
-				"          data,",
+				"source1 foldDown(unroll(statuses),",
+				"     mapColumn(",
 				"          support,",
-				"          statuses,",
-				"          search_metadata",
+				"          search_metadata,",
+				"          created_at = statuses.created_at,",
+				"          id = statuses.id,",
+				"          id_str = statuses.id_str,",
+				"          hashtags = statuses.entities.hashtags,",
+				"          user_mentions = statuses.entities.user_mentions,",
+				"          screen_name = statuses.user.screen_name",
 				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 foldDown(unroll(user_mentions),",
+				"     mapColumn(",
+				"          search_metadata,",
+				"          created_at,",
+				"          id,",
+				"          id_str,",
+				"          hashtags,",
+				"          user_mentions = user_mentions.screen_name,",
+				"          screen_name = user_mentions.screen_name,",
+				"          name = user_mentions.name,",
+				"          User_id = user_mentions.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten2",
+				"flatten2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     filePattern:'twitterflatten[n]',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
