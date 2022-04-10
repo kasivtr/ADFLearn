@@ -175,13 +175,6 @@
 							"sink1": {
 								"flattenoutput": "twitterflatten"
 							}
-						},
-						"linkedServiceParameters": {
-							"sink1": {
-								"schemaLinkedService": {
-									"flattenoutput": "twitterflatten"
-								}
-							}
 						}
 					},
 					"compute": {
