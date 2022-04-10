@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().filename",
+					"value": "twitterres1.json",
 					"type": "Expression"
 				},
 				"folderPath": "RestApi/inbound",
