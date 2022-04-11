@@ -1,5 +1,5 @@
 {
-	"name": "blob to sql",
+	"name": "blob_to_sql",
 	"properties": {
 		"activities": [
 			{
