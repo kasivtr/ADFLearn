@@ -1,0 +1,27 @@
+{
+	"name": "DateCheck",
+	"properties": {
+		"description": "Check whether weekdays or weekend",
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "todaytime",
+					"value": {
+						"value": "@contains(string(dayOfWeek('2022-04-17')),'12345')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"todaytime": {
+				"type": "Boolean"
+			}
+		},
+		"annotations": []
+	}
+}
