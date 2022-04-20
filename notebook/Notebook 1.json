@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "64891e89-b1ee-4adc-bf8a-03dc68030d7f"
+				"spark.autotune.trackingId": "a09a1714-6d2a-4d82-ab28-37429388a1b3"
 			}
 		},
 		"metadata": {
@@ -100,6 +100,26 @@
 					"mssparkutils.fs.rm('/synapsedemo/Boston/', recurse=True)"
 				],
 				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df = mssparkutils.fs.ls(\"/synapsedemo/NYCTaxi/csvfile/\")\r\n",
+					"for file in df:\r\n",
+					"    print(file.name, file.size)"
+				],
+				"execution_count": 26
 			}
 		]
 	}
