@@ -1,0 +1,137 @@
+{
+	"name": "TwitterEnhacements",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@range(1,10)",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAKisbAEAAAAASFCfq%2Fq5aisvhfiozs5k7mob6WE%3Dds4PlFkkulYMPfAvkyt4AExIJc0CCfoHChcSmsTfAzVgVWt1tq"
+									},
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestResource2",
+									"type": "DatasetReference",
+									"parameters": {
+										"query": {
+											"value": "@concat('tweets.json',variables('pagingvar'))",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "RestJson",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": "twitterres@{item()}.json"
+									}
+								}
+							]
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "GetTwitterdata_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "pagingvar",
+								"value": {
+									"value": "@activity('GetTwitterdata_copy1').output.search_metadata.next_results",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "GetTwitterdata_copy1",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "Copy data1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": {
+									"value": "@{concat('https://api.twitter.com/1.1/search/tweets.json',variables('pagingvar'))}",
+									"type": "Expression"
+								},
+								"method": "GET",
+								"headers": {
+									"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAKisbAEAAAAASFCfq%2Fq5aisvhfiozs5k7mob6WE%3Dds4PlFkkulYMPfAvkyt4AExIJc0CCfoHChcSmsTfAzVgVWt1tq"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"pagingvar": {
+				"type": "string",
+				"defaultValue": "?q=superbowl&result_type=recent"
+			}
+		},
+		"annotations": []
+	}
+}
