@@ -15,7 +15,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "copytwitterdatatoStorage",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -77,7 +77,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "GetTwitterdata_copy1",
+									"activity": "get the next result value",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -87,17 +87,17 @@
 							"typeProperties": {
 								"variableName": "pagingvar",
 								"value": {
-									"value": "@activity('GetTwitterdata_copy1').output.search_metadata.next_results",
+									"value": "@activity('get the next result value').output.search_metadata.next_results",
 									"type": "Expression"
 								}
 							}
 						},
 						{
-							"name": "GetTwitterdata_copy1",
+							"name": "get the next result value",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
-									"activity": "Copy data1",
+									"activity": "copytwitterdatatoStorage",
 									"dependencyConditions": [
 										"Succeeded"
 									]
