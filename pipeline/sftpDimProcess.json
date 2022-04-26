@@ -128,7 +128,7 @@
 						"referenceName": "carstable",
 						"type": "DatasetReference",
 						"parameters": {
-							"outtable": "Staging.DimSeller"
+							"outtable": "DimSeller"
 						}
 					}
 				]
