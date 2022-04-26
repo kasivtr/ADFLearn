@@ -35,12 +35,74 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ""
 						}
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Value",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Seller",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Seller",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SellerCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SellerCode",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Description",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
