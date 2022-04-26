@@ -92,6 +92,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "dw_end_dt",
+								"value": {
+									"value": "@formatDateTime('9999-12-31','yyyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
