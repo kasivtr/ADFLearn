@@ -41,7 +41,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "",
+			"schema": "Staging",
 			"table": {
 				"value": "@dataset().outtable",
 				"type": "Expression"
