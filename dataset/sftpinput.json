@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "SftpLocation",
-				"fileName": "2022-04-26-17:32:19.csv",
+				"fileName": "DimSeller.csv",
 				"folderPath": "/home/localadmin/data"
 			},
 			"columnDelimiter": ",",
