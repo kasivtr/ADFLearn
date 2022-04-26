@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copyfromsftpserver",
+				"name": "copy from sftp server",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -79,11 +79,11 @@
 				]
 			},
 			{
-				"name": "loadtoStagingtable",
+				"name": "load to Staging table",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "copyfromsftpserver",
+						"activity": "copy from sftp server",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -163,11 +163,11 @@
 				]
 			},
 			{
-				"name": "insertnewrecord",
+				"name": "insert new record",
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "updatedimtable",
+						"activity": "update dim table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -196,11 +196,11 @@
 				}
 			},
 			{
-				"name": "updatedimtable",
+				"name": "update dim table",
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "loadtoStagingtable",
+						"activity": "load to Staging table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -233,7 +233,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "loadtoStagingtable",
+						"activity": "load to Staging table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -299,6 +299,49 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Delete source file",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "move to output",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "sftptoblob",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "input"
+						}
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "inputblob",
+							"type": "LinkedServiceReference"
+						},
+						"path": "piplelinelog"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"wildcardFileName": "DimSeller.csv",
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
 		"annotations": []
