@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "copyfromsftpserver",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -17,15 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"name": "dw_start_dt",
-								"value": {
-									"value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
-									"type": "Expression"
-								}
-							}
-						],
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
@@ -48,6 +39,20 @@
 						}
 					},
 					"enableStaging": false,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Info",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "inputblob",
+								"type": "LinkedServiceReference"
+							},
+							"path": "piplelinelog"
+						}
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"typeConversion": true,
@@ -66,16 +71,19 @@
 				"outputs": [
 					{
 						"referenceName": "sftptoblob",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "input"
+						}
 					}
 				]
 			},
 			{
-				"name": "Copy data2",
+				"name": "loadtoStagingtable",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "copyfromsftpserver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -93,6 +101,13 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
+							{
+								"name": "dw_start_dt",
+								"value": {
+									"value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
+									"type": "Expression"
+								}
+							},
 							{
 								"name": "dw_end_dt",
 								"value": {
@@ -113,8 +128,10 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "DELETE FROM Staging.DimSeller",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -129,7 +146,10 @@
 				"inputs": [
 					{
 						"referenceName": "sftptoblob",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "input"
+						}
 					}
 				],
 				"outputs": [
@@ -138,6 +158,144 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"outtable": "DimSeller"
+						}
+					}
+				]
+			},
+			{
+				"name": "insertnewrecord",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "updatedimtable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "INSERT INTO dbo.DimSeller\nSELECT * FROM [Staging].[DimSeller] WHERE ID NOT IN (SELECT ID FROM dbo.DimSeller WHERE dw_end_dt='9999-12-31');\n\nselect 0 as id;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "LoadtoAzureSQL",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "updatedimtable",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "loadtoStagingtable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "update t \nset t.dw_end_dt = DATEADD(D,-1,s.dw_start_dt)\nfrom dbo.DimSeller t \n  inner join [Staging].[DimSeller] s \n  on t.id = s.id \n  and  ( t.Value <> s.Value\n  or t.Seller <> s.Seller\n  or t.SellerCode <> s.SellerCode\n  or t.Description <> t.Description )\n  and t.dw_end_dt = '9999-12-31' ;\n\nselect 0 as id;\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "LoadtoAzureSQL",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "move to output",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "loadtoStagingtable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "DimSeller.csv",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sftptoblob",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "input"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sftptoblob",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "output"
 						}
 					}
 				]
