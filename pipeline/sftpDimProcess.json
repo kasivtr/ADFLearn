@@ -21,7 +21,7 @@
 							{
 								"name": "dw_start_dt",
 								"value": {
-									"value": "@utcNow('YYYY-MM-DD')",
+									"value": "@utcNow()",
 									"type": "Expression"
 								}
 							}
