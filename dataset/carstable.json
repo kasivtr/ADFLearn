@@ -41,7 +41,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
+			"schema": "",
 			"table": {
 				"value": "@dataset().outtable",
 				"type": "Expression"
