@@ -17,6 +17,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "dw_start_dt",
+								"value": {
+									"value": "@utcNow('YYYY-MM-DD')",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
@@ -35,74 +44,12 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ""
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "ID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ID",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Value",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Value",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Seller",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Seller",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SellerCode",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "SellerCode",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Description",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Description",
-									"type": "String",
-									"physicalType": "String"
-								}
-							}
-						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
