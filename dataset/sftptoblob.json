@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "DimSeller.csv",
 				"folderPath": "input",
 				"container": "sftpfolder"
 			},
