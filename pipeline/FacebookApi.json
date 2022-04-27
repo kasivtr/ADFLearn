@@ -61,12 +61,14 @@
 									}
 								},
 								"sink": {
-									"type": "JsonSink",
+									"type": "DelimitedTextSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "JsonWriteSettings"
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
 									}
 								},
 								"enableStaging": false,
@@ -131,13 +133,10 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "RestJson",
+									"referenceName": "resttocsv",
 									"type": "DatasetReference",
 									"parameters": {
-										"filename": {
-											"value": "restapi@{item()}.json",
-											"type": "Expression"
-										}
+										"filename": "restapi@{item()}.csv"
 									}
 								}
 							]
