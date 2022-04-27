@@ -68,7 +68,7 @@
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
 										"quoteAllText": true,
-										"fileExtension": ".txt"
+										"fileExtension": ".csv"
 									}
 								},
 								"enableStaging": false,
@@ -136,7 +136,7 @@
 									"referenceName": "resttocsv",
 									"type": "DatasetReference",
 									"parameters": {
-										"filename": "restapi@{item()}.csv"
+										"filename": "restapi@{item()}"
 									}
 								}
 							]
