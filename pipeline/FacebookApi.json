@@ -136,15 +136,271 @@
 									"referenceName": "resttocsv",
 									"type": "DatasetReference",
 									"parameters": {
-										"filename": "restapi@{item()}.csv"
+										"filename": "restapi@{item()}.csv",
+										"foldername": "RestApi/peel/inbound"
 									}
 								}
 							]
 						}
 					]
 				}
+			},
+			{
+				"name": "load to Staging table",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Find the number of pages",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "dw_start_dt",
+								"value": {
+									"value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "dw_end_dt",
+								"value": {
+									"value": "@formatDateTime('9999-12-31','yyyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "RestApi/peel/inbound",
+							"wildcardFileName": {
+								"value": "*.csv",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": {
+							"value": "@{concat('DELETE FROM Staging.',pipeline().parameters.outputtable)}",
+							"type": "Expression"
+						},
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "resttocsv",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "restapi*.csv",
+							"foldername": "RestApi/peel/inbound"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "carstable",
+						"type": "DatasetReference",
+						"parameters": {
+							"outtable": {
+								"value": "@pipeline().parameters.outputtable",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Insert to main table",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "load to Staging table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "INSERT INTO [dbo].[PeelRestApi] \nSELECT * FROM [Staging].[PeelRestApi] ;\n\n\nselect 0 as id;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "LoadtoAzureSQL",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "move to archive",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "load to Staging table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "RestApi/peel/inbound",
+							"wildcardFileName": {
+								"value": "*.csv",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "resttocsv",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "restapi*.csv",
+							"foldername": "RestApi/peel/inbound"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "inboundtoarchive",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Delete source  api file",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "move to archive",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "resttocsv",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "restapi*.csv",
+							"foldername": "RestApi/peel/inbound"
+						}
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "inputblob",
+							"type": "LinkedServiceReference"
+						},
+						"path": "piplelinelog"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"wildcardFileName": {
+							"value": "*.csv",
+							"type": "Expression"
+						},
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
+		"parameters": {
+			"outputtable": {
+				"type": "string",
+				"defaultValue": "PeelRestApi"
+			}
+		},
 		"annotations": []
 	}
 }
