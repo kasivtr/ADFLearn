@@ -136,7 +136,7 @@
 									"referenceName": "resttocsv",
 									"type": "DatasetReference",
 									"parameters": {
-										"filename": "restapi@{item()}"
+										"filename": "restapi@{item()}.csv"
 									}
 								}
 							]
