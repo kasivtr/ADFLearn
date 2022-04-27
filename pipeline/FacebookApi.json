@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Web1",
+				"name": "Fetch from API",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -20,11 +20,11 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Find the number of pages",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Web1",
+						"activity": "Fetch from API",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -33,7 +33,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@range(1,activity('Web1').output.total_pages)",
+						"value": "@range(1,activity('Fetch From API').output.total_pages)",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -69,7 +69,53 @@
 										"type": "JsonWriteSettings"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['id']"
+											},
+											"sink": {
+												"path": "id"
+											}
+										},
+										{
+											"source": {
+												"path": "['email']"
+											},
+											"sink": {
+												"path": "email"
+											}
+										},
+										{
+											"source": {
+												"path": "['first_name']"
+											},
+											"sink": {
+												"path": "first_name"
+											}
+										},
+										{
+											"source": {
+												"path": "['last_name']"
+											},
+											"sink": {
+												"path": "last_name"
+											}
+										},
+										{
+											"source": {
+												"path": "['avatar']"
+											},
+											"sink": {
+												"path": "avatar"
+											}
+										}
+									],
+									"collectionReference": "$['data']"
+								}
 							},
 							"inputs": [
 								{
@@ -89,7 +135,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
-											"value": "restapiwafa@{item()}.json",
+											"value": "restapi@{item()}.json",
 											"type": "Expression"
 										}
 									}
