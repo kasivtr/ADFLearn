@@ -19,7 +19,7 @@
 					"value": "@dataset().filename",
 					"type": "Expression"
 				},
-				"folderPath": "RestApi/inbound",
+				"folderPath": "RestApi/peel/inbound",
 				"fileSystem": "root"
 			}
 		},
