@@ -65,7 +65,13 @@
 				"inputs": [
 					{
 						"referenceName": "sftpinput",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Filename": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -119,7 +125,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "DimSeller.csv",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -128,7 +137,10 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE FROM Staging.DimSeller",
+						"preCopyScript": {
+							"value": "@{concat('DELETE FROM Staging.',pipeline().parameters.outputtable)}",
+							"type": "Expression"
+						},
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
@@ -157,7 +169,10 @@
 						"referenceName": "carstable",
 						"type": "DatasetReference",
 						"parameters": {
-							"outtable": "DimSeller"
+							"outtable": {
+								"value": "@pipeline().parameters.outputtable",
+								"type": "Expression"
+							}
 						}
 					}
 				]
@@ -253,7 +268,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "DimSeller.csv",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -268,7 +286,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -338,12 +356,25 @@
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
-						"wildcardFileName": "DimSeller.csv",
+						"wildcardFileName": {
+							"value": "@{pipeline().parameters.Filename}",
+							"type": "Expression"
+						},
 						"enablePartitionDiscovery": false
 					}
 				}
 			}
 		],
+		"parameters": {
+			"Filename": {
+				"type": "string",
+				"defaultValue": "DimSeller.csv"
+			},
+			"outputtable": {
+				"type": "string",
+				"defaultValue": "DimSeller"
+			}
+		},
 		"annotations": []
 	}
 }

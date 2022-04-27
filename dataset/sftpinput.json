@@ -5,12 +5,20 @@
 			"referenceName": "Sftp1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "SftpLocation",
-				"fileName": "DimSeller.csv",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
 				"folderPath": "/home/localadmin/data"
 			},
 			"columnDelimiter": ",",
